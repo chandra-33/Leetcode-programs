@@ -1,0 +1,45 @@
+import java.util.*;
+
+class Solution {
+    public int nthUglyNumber(int n) {
+        int[] uglyNumbers = new int[n];
+        uglyNumbers[0] = 1;
+        int i2 = 0, i3 = 0, i5 = 0;  
+        int MultipleOf2 = 2;
+        int MultipleOf3 = 3;
+        int MultipleOf5 = 5;
+        
+        for (int i = 1; i < n; i++) {
+            int nextUglyNumber = Math.min(MultipleOf2, Math.min(MultipleOf3,MultipleOf5));
+            uglyNumbers[i] = nextUglyNumber;
+            
+            if (nextUglyNumber == MultipleOf2) {
+                i2++;
+                MultipleOf2 = uglyNumbers[i2] * 2;
+            }
+            if (nextUglyNumber == MultipleOf3) {
+                i3++;
+                MultipleOf3 = uglyNumbers[i3] * 3;
+            }
+            if (nextUglyNumber == MultipleOf5) {
+                i5++;
+                MultipleOf5 = uglyNumbers[i5] * 5;
+            }
+        }
+        
+        return uglyNumbers[n - 1];
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter the value of n: ");
+        int n = sc.nextInt();
+        Solution solution = new Solution();
+        int nthUglyNumber = solution.nthUglyNumber(n);
+        System.out.println("The " + n + "th ugly number is: " + nthUglyNumber);
+        
+        sc.close();
+    }
+}
