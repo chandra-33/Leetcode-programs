@@ -1,0 +1,26 @@
+import java.util.*;
+class Solution {
+    public boolean isPalindrome(String s) {
+        if (s.isEmpty()) {
+        	return true;
+        }
+        int start = 0;
+        int last = s.length() - 1;
+        while(start <= last) {
+        	char First = s.charAt(start);
+        	char End = s.charAt(last);
+        	if (!Character.isLetterOrDigit(First)) {
+        		start++;
+        	} else if(!Character.isLetterOrDigit(End)) {
+        		last--;
+        	} else {
+        		if (Character.toLowerCase(First) != Character.toLowerCase(End)) {
+        			return false;
+        		}
+        		start++;
+        		last--;
+        	}
+        }
+        return true;
+    }
+}
